@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>K Mondal Store - Fresh Organic Groceries</title>
+    <title>K Mondal Store</title>
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -15,6 +15,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Loading Spinner -->
+    <div class="loading"></div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
     <!-- Header Section -->
     <header class="header">
         <a href="#" class="logo"><i class="fas fa-shopping-basket"></i>K M S</a>
@@ -31,7 +44,9 @@
         <div class="icons">
             <div class="fas fa-bars" id="menu-btn"></div>
             <div class="fas fa-search" id="search-btn"></div>
-            <div class="fas fa-shopping-cart" id="cart-btn"></div>
+            <div class="fas fa-shopping-cart" id="cart-btn">
+                <span class="cart-count">0</span>
+            </div>
             <div class="fas fa-user" id="login-btn"></div>
         </div>
         
@@ -41,41 +56,23 @@
         </form>
         
         <div class="shopping-cart">
-            <div class="box">
-                <i class="fas fa-trash"></i>
-                <img src="cart-image-1.png" alt="Cart Image" />
-                <div class="content">
-                    <h3>Banana</h3>
-                    <span class="price">$9.99/-</span>
-                    <span class="quantity">qty : 1</span>
-                </div>
+            <div class="box-container">
+                <!-- Cart items will be dynamically added here -->
             </div>
-            <div class="box">
-                <i class="fas fa-trash"></i>
-                <img src="cart-image-2.png" alt="Cart Image" />
-                <div class="content">
-                    <h3>Rice</h3>
-                    <span class="price">$50/-</span>
-                    <span class="quantity">qty : 1kg</span>
-                </div>
-            </div>
-            <div class="box">
-                <i class="fas fa-trash"></i>
-                <img src="cart-image-3.png" alt="Cart Image" />
-                <div class="content">
-                    <h3>Sugar</h3>
-                    <span class="price">$100/-</span>
-                    <span class="quantity">qty : 1kg</span>
-                </div>
-            </div>
-            <div class="total">total : 159.99/-</div>
+            <div class="total">Total: $0.00</div>
             <a href="#" class="btn">check out</a>
         </div>
         
         <form action="" class="login-form">
             <h3>Login now</h3>
-            <input type="email" class="box" placeholder="your email" />
-            <input type="password" class="box" placeholder="your password" />
+            <div class="box">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="your email" required />
+            </div>
+            <div class="box">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="your password" required />
+            </div>
             <p>forget your password <a href="#">click here</a></p>
             <p>don't have any account <a href="#">create now</a></p>
             <input type="submit" value="login now" class="btn" />
@@ -87,10 +84,10 @@
         <div class="content">
             <h3>fresh and <span>organic</span> products for your</h3>
             <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est officia,
-                debitis vitae dolore maxime accusamus?
+                Discover our wide range of fresh and organic products at affordable prices.
+                Quality guaranteed!
             </p>
-            <a href="#" class="btn">shop now</a>
+            <a href="#products" class="btn">shop now</a>
         </div>
     </section>
     
@@ -99,29 +96,29 @@
         <h1 class="heading">our <span>features</span></h1>
         <div class="box-container">
             <div class="box">
-                <img src="feature-img1.png" alt="feature1" />
+                <img src="images/feature-img1.png" alt="feature1" />
                 <h3>fresh and organic</h3>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas,
-                    unde. Voluptatibus?
+                    We source only the freshest and highest quality organic products
+                    from trusted suppliers.
                 </p>
                 <a href="#" class="btn">read more</a>
             </div>
             <div class="box">
-                <img src="feature-img3.png" alt="feature3" />
+                <img src="images/feature-img3.png" alt="feature3" />
                 <h3>Online Payment available</h3>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas,
-                    unde. Voluptatibus?
+                    Secure and convenient payment options including credit cards,
+                    UPI, and digital wallets.
                 </p>
                 <a href="#" class="btn">read more</a>
             </div>
             <div class="box">
-                <img src="feature-img2.png" alt="feature2" />
+                <img src="images/feature-img2.png" alt="feature2" />
                 <h3>Delivery not available</h3>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas,
-                    unde. Voluptatibus?
+                    Visit our store to experience our products firsthand and get
+                    personalized service.
                 </p>
                 <a href="#" class="btn">read more</a>
             </div>
@@ -133,8 +130,8 @@
         <h1 class="heading">our <span>products</span></h1>
         <div class="swiper product-slider">
             <div class="swiper-wrapper">
-                <div class="swiper-slide box">
-                    <img src="product-1.png" alt="Tata Salt" />
+                <div class="swiper-slide box" data-id="1">
+                    <img src="images/product-1.png" alt="Tata Salt" />
                     <h3>Tata Salt</h3>
                     <div class="price">$14/-</div>
                     <div class="stars">
@@ -144,10 +141,10 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <a href="#" class="btn">add to cart</a>
+                    <a href="#" class="btn add-to-cart-btn">add to cart</a>
                 </div>
-                <div class="swiper-slide box">
-                    <img src="product-2.png" alt="Horlicks" />
+                <div class="swiper-slide box" data-id="2">
+                    <img src="images/product-2.png" alt="Horlicks" />
                     <h3>Horlicks</h3>
                     <div class="price">$294/-</div>
                     <div class="stars">
@@ -157,10 +154,10 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <a href="#" class="btn">add to cart</a>
+                    <a href="#" class="btn add-to-cart-btn">add to cart</a>
                 </div>
-                <div class="swiper-slide box">
-                    <img src="product-3.png" alt="Saloni Oil" />
+                <div class="swiper-slide box" data-id="3">
+                    <img src="images/product-3.png" alt="Saloni Oil" />
                     <h3>Saloni Oil</h3>
                     <div class="price">$69/-</div>
                     <div class="stars">
@@ -170,10 +167,10 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <a href="#" class="btn">add to cart</a>
+                    <a href="#" class="btn add-to-cart-btn">add to cart</a>
                 </div>
-                <div class="swiper-slide box">
-                    <img src="product-4.png" alt="Meat Masala" />
+                <div class="swiper-slide box" data-id="4">
+                    <img src="images/product-4.png" alt="Meat Masala" />
                     <h3>Meat Masala</h3>
                     <div class="price">$5/-</div>
                     <div class="stars">
@@ -183,14 +180,10 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <a href="#" class="btn">add to cart</a>
+                    <a href="#" class="btn add-to-cart-btn">add to cart</a>
                 </div>
-            </div>
-        </div>
-        <div class="swiper product-slider">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide box">
-                    <img src="product-5.png" alt="Surf Excel" />
+                <div class="swiper-slide box" data-id="5">
+                    <img src="images/product-5.png" alt="Surf Excel" />
                     <h3>Surf Excel</h3>
                     <div class="price">$14/-</div>
                     <div class="stars">
@@ -200,10 +193,10 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <a href="#" class="btn">add to cart</a>
+                    <a href="#" class="btn add-to-cart-btn">add to cart</a>
                 </div>
-                <div class="swiper-slide box">
-                    <img src="product-6.png" alt="Amul Taaza" />
+                <div class="swiper-slide box" data-id="6">
+                    <img src="images/product-6.png" alt="Amul Taaza" />
                     <h3>Amul Taaza</h3>
                     <div class="price">$294/-</div>
                     <div class="stars">
@@ -213,10 +206,10 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <a href="#" class="btn">add to cart</a>
+                    <a href="#" class="btn add-to-cart-btn">add to cart</a>
                 </div>
-                <div class="swiper-slide box">
-                    <img src="product-7.png" alt="Maggi" />
+                <div class="swiper-slide box" data-id="7">
+                    <img src="images/product-7.png" alt="Maggi" />
                     <h3>Maggi</h3>
                     <div class="price">$69/-</div>
                     <div class="stars">
@@ -226,10 +219,10 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <a href="#" class="btn">add to cart</a>
+                    <a href="#" class="btn add-to-cart-btn">add to cart</a>
                 </div>
-                <div class="swiper-slide box">
-                    <img src="product-8.png" alt="Shahi Garam" />
+                <div class="swiper-slide box" data-id="8">
+                    <img src="images/product-8.png" alt="Shahi Garam" />
                     <h3>Shahi Garam</h3>
                     <div class="price">$5/-</div>
                     <div class="stars">
@@ -239,7 +232,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <a href="#" class="btn">add to cart</a>
+                    <a href="#" class="btn add-to-cart-btn">add to cart</a>
                 </div>
             </div>
         </div>
@@ -250,25 +243,25 @@
         <h1 class="heading">product <span>categories</span></h1>
         <div class="box-container">
             <div class="box">
-                <img src="cat-1.png" alt="Vegetables">
+                <img src="images/cat-1.png" alt="Vegetables">
                 <h3>Vegetables</h3>
                 <p>upto 45% off</p>
                 <a href="#" class="btn">shop now</a>
             </div>
             <div class="box">
-                <img src="cat-2.png" alt="Bakery and Bread">
+                <img src="images/cat-2.png" alt="Bakery and Bread">
                 <h3>Bakery and Bread</h3>
                 <p>upto 45% off</p>
                 <a href="#" class="btn">shop now</a>
             </div>
             <div class="box">
-                <img src="cat-3.png" alt="Beverages">
+                <img src="images/cat-3.png" alt="Beverages">
                 <h3>Beverages</h3>
                 <p>upto 45% off</p>
                 <a href="#" class="btn">shop now</a>
             </div>
             <div class="box">
-                <img src="cat-4.png" alt="Spice and Condiments">
+                <img src="images/cat-4.png" alt="Spice and Condiments">
                 <h3>Spice and Condiments</h3>
                 <p>upto 45% off</p>
                 <a href="#" class="btn">shop now</a>
@@ -282,8 +275,8 @@
         <div class="swiper review-slider">
             <div class="swiper-wrapper">
                 <div class="swiper-slide box">
-                    <img src="review-1.png" alt="Customer Review">
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non, veritatis?</p>
+                    <img src="images/review-2.png" alt="Customer Review">
+                    <p>Excellent quality products and great service. Will definitely shop here again!</p>
                     <h3>Karnav Dey</h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
@@ -294,7 +287,7 @@
                     </div>
                 </div>
                 <div class="swiper-slide box">
-                    <img src="review-2.png" alt="Customer Review">
+                    <img src="images/review-2.png" alt="Customer Review">
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non, veritatis?</p>
                     <h3>Samir Agarwal</h3>
                     <div class="stars">
@@ -306,7 +299,7 @@
                     </div>
                 </div>
                 <div class="swiper-slide box">
-                    <img src="review-3.png" alt="Customer Review">
+                    <img src="images/review-3.png" alt="Customer Review">
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non, veritatis?</p>
                     <h3>Kaushik Mandal</h3>
                     <div class="stars">
@@ -318,7 +311,7 @@
                     </div>
                 </div>
                 <div class="swiper-slide box">
-                    <img src="review-4.png" alt="Customer Review">
+                    <img src="images/review-4.png" alt="Customer Review">
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non, veritatis?</p>
                     <h3>Raghav Sinha</h3>
                     <div class="stars">
@@ -338,22 +331,22 @@
         <h1 class="heading">our <span>blogs</span></h1>
         <div class="box-container">
             <div class="box">
-                <img src="blog-1.png" alt="Spice Blog">
+                <img src="images/blog-1.png" alt="Spice Blog">
                 <div class="content">
                     <div class="icons">
-                        <a href="#"><i class="fas fa-user"></i> by user</a>
+                        <a href="#"><i class="fas fa-user"></i> by admin</a>
                         <a href="#"><i class="fas fa-calendar"></i> 1st June, 2024</a>
                     </div>
                     <h3>Spice</h3>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit fuga, numquam adipisci ratione dolores doloremque.</p>
+                    <p>Discover the world of spices and their health benefits.</p>
                     <a href="#" class="btn">read more</a>
                 </div>
             </div>
             <div class="box">
-                <img src="blog-2.png" alt="Cold Drinks Blog">
+                <img src="images/blog-2.png" alt="Cold Drinks Blog">
                 <div class="content">
                     <div class="icons">
-                        <a href="#"><i class="fas fa-user"></i> by user</a>
+                        <a href="#"><i class="fas fa-user"></i> by admin</a>
                         <a href="#"><i class="fas fa-calendar"></i> 1st June, 2024</a>
                     </div>
                     <h3>Cold Drinks</h3>
@@ -362,10 +355,10 @@
                 </div>
             </div>
             <div class="box">
-                <img src="blog-3.png" alt="Vegetables Blog">
+                <img src="images/blog-3.png" alt="Vegetables Blog">
                 <div class="content">
                     <div class="icons">
-                        <a href="#"><i class="fas fa-user"></i> by user</a>
+                        <a href="#"><i class="fas fa-user"></i> by admin</a>
                         <a href="#"><i class="fas fa-calendar"></i> 1st June, 2024</a>
                     </div>
                     <h3>Fresh and Organic Vegetables</h3>
@@ -374,7 +367,6 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
     </section>
     
     <!-- Footer Section -->
@@ -390,87 +382,6 @@
                     <a href="#" class="fab fa-linkedin"></a>
                 </div>
             </div>
-=======
-      </div>
-      <div class="box">
-        <img src="blog-2.png" alt="blog-2">
-        <div class="content">
-          <div class="icons">
-            <a href="#"><i class="fas fa-user"></i> by user</a>
-            <a href="#"><i class="fas fa-calendar"></i> 1st June, 2024</a>
-          </div>
-          <h3>Cold Drinks</h3>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit fuga, numquam adipisci ratione dolores
-            doloremque.</p>
-          <a href="#" class="btn">read more</a>
-        </div>
-      </div>
-      <div class="box">
-        <img src="blog-3.png" alt="blog-3">
-        <div class="content">
-          <div class="icons">
-            <a href="#"><i class="fas fa-user"></i> by user</a>
-            <a href="#"><i class="fas fa-calendar"></i> 1st June, 2024</a>
-          </div>
-          <h3>Fresh and Organic Vegetables</h3>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit fuga, numquam adipisci ratione dolores
-            doloremque.</p>
-          <a href="#" class="btn">read more</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end blog section  -->
-  <!-- start footer section  -->
-  <section class="footer" id="footer">
-    <div class="box-container">
-      <div class="box">
-        <h3>About Us</h3>
-        <h3>K M S<i class="fas fa-shopping-basket"></i></h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, doloremque.</p>
-        <div class="share">
-          <a href="#" class="fab fa-facebook"></a>
-          <a href="#" class="fab fa-instagram"></a>
-          <a href="#" class="fab fa-twitter"></a>
-          <a href="#" class="fab fa-linkedin"></a>
-        </div>
-      </div>
-      <div class="box">
-        <h3>Contact Info</h3>
-        <div class="share">
-          <a href="#" class="links"><i class="fas fa-phone"></i> +919733257431</a>
-          <a href="#" class="links"><i class="fas fa-phone"></i> +919593295965</a>
-          <a href="#" class="links"><i class="fas fa-envelope"></i> kmondalstore@gmail.com</a>
-          <a href="#" class="links"><i class="fas fa-map-marker-alt"></i> K Mondal Store, Santimore, Kalabari Road, Banarhat, Jalpaiguri, West Bengal, India, 735202</a>
-        </div>
-      </div>
-      <div class="box">
-        <h3>Quick Links</h3>
-        <div class="share">
-          <a href="#" class="links"><i class="fas fa-arrow-right"></i> Home</a>
-          <a href="#" class="links"><i class="fas fa-arrow-right"></i> Features</a>
-          <a href="#" class="links"><i class="fas fa-arrow-right"></i> Products</a>
-          <a href="#" class="links"><i class="fas fa-arrow-right"></i> Categories</a>
-          <a href="#" class="links"><i class="fas fa-arrow-right"></i> Review</a>
-          <a href="#" class="links"><i class="fas fa-arrow-right"></i> Blogs</a>
-        </div>
-      </div>
-      <div class="box">
-        <h3>Newsletter</h3>
-        <!-- <p>Subscribe for latest updates</p> -->
-        <!-- <input type="email" placeholder="Your Email" class="email"> -->
-        <input type="submit" value="Subscribe" class="btn">
-        <!-- <img src="payment.png" alt="Payment" class="payment-img"> -->
-      </div>
-      <div class="credit">created by <span>Kaushik Mandal</span> | all rights reserved</div>
-    </div>
-  </section>
-  
-  <!-- end footer section  -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="script.js"></script>
-</body>
->>>>>>> 4d8f471211f3d8632931d721a2d7b802cf375c0d
 
             <div class="box contact-box">
                 <h3>Contact Info</h3>
@@ -516,17 +427,27 @@
                 <h3>Newsletter</h3>
                 <p>Subscribe to our newsletter for updates and exclusive offers!</p>
                 <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email" class="email">
+                    <input type="email" placeholder="Enter your email" class="email" required>
                     <button type="submit" class="btn">Subscribe</button>
                 </form>
                 <div class="payment-methods">
                     <h4>We Accept</h4>
-                    <img src="payment-methods.png" alt="Payment Methods" class="payment-img">
+                    <img src="images/payment.png" alt="Payment Methods" class="payment-img">
                 </div>
             </div>
         </div>
         <div class="credit">created by <span>Kaushik Mandal</span> | all rights reserved</div>
     </section>
+    
+    <!-- Quick View Modal -->
+    <div class="quick-view">
+        <div class="quick-view-content">
+            <i class="fas fa-times quick-view-close"></i>
+            <div class="quick-view-body">
+                <!-- Quick view content will be dynamically added here -->
+            </div>
+        </div>
+    </div>
     
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
